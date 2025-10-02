@@ -77,3 +77,16 @@ for _, row in avg_gam.iterrows():
     ).add_to(m)
 
 st_folium(m, width=700, height=450)
+
+st.subheader(f"GAM vs Conflict Events in {selected_woreda}")
+fig, ax1 = plt.subplots(figsize=(10,4))
+
+sns.lineplot(data=subset, x="ym", y="GAM", ax=ax1, color="red", label="GAM")
+ax1.set_ylabel("GAM cases", color="red")
+
+ax2 = ax1.twinx()
+sns.lineplot(data=subset, x="ym", y="conflict_events", ax=ax2, color="blue", label="Conflict Events")
+ax2.set_ylabel("Conflict events", color="blue")
+
+st.pyplot(fig)
+
